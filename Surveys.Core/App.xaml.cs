@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Surveys.Core.Views;
 namespace Surveys.Core
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,6 +15,7 @@ namespace Surveys.Core
         public App()
         {
             InitializeComponent();
+            MainPage = new NavigationPage(new Views.Surveys());
         }
     }
 }
