@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Surveys.Core.Model;
 using Xamarin.Forms;
 
 namespace Surveys.Core.ViewModel
 {
-    public class Data : ViewModelBase
+    public class SurveysViewModel : ViewModelBase
     {
         private ObservableCollection<Survey> _surveys;
         private Survey _selectedSurvey;
@@ -38,7 +34,7 @@ namespace Surveys.Core.ViewModel
             }
         }
 
-        public Data()
+        public SurveysViewModel()
         {
             NewSurveyCommand = new Command(NewSurveyCommandExecute);
             Surveys = new ObservableCollection<Survey>();

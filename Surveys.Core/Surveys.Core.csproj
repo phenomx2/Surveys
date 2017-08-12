@@ -42,8 +42,8 @@
     <Compile Include="Literals.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Survey.cs" />
-    <Compile Include="ViewModel\Data.cs" />
+    <Compile Include="Model\Survey.cs" />
+    <Compile Include="ViewModel\SurveysViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Views\SurveyDetail.xaml.cs">
       <DependentUpon>SurveyDetail.xaml</DependentUpon>
