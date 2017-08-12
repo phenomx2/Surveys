@@ -28,7 +28,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Button Text="+"
-                Clicked="AddSurveys_Clicked"/>
+                Command="{Binding NewSurveyCommand}"/>
         <ListView Grid.Row="1"
                   ItemsSource="{Binding Surveys}"
                   SelectedItem="{Binding SelectedSurvey}"

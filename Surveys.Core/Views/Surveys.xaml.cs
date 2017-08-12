@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Surveys.Core.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,11 +10,10 @@ namespace Surveys.Core.Views
         public Surveys()
         {
             InitializeComponent();
-        }
-
-        private async void AddSurveys_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new SurveyDetail());
+            MessagingCenter.Subscribe<Data>(this,Messages.NewSurvey, async (sender) =>
+            {
+                await Navigation.PushAsync(new SurveyDetail());
+            });
         }
     }
 }
