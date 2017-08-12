@@ -11,7 +11,7 @@ namespace Surveys.Core.Converters
             if(value == null)
                 throw new ArgumentException("Value cannot be null");
             var team = (string) value;
-            var color = Color.Transparent;
+            Color color;
 
             switch (team)
             {

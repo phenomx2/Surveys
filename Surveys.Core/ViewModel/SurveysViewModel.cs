@@ -38,7 +38,7 @@ namespace Surveys.Core.ViewModel
         {
             NewSurveyCommand = new Command(NewSurveyCommandExecute);
             Surveys = new ObservableCollection<Survey>();
-            MessagingCenter.Subscribe<ContentPage, Survey>(this, Messages.NewSurveyMessage, (sender, args) => 
+            MessagingCenter.Subscribe<SurveyDetailsViewModel, Survey>(this, Messages.NewSurveyComplete, (sender, args) => 
             {
                 Surveys.Add(args);
             });
