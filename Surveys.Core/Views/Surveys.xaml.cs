@@ -10,10 +10,6 @@ namespace Surveys.Core.Views
         public Surveys()
         {
             InitializeComponent();
-            MessagingCenter.Subscribe<ContentPage, Survey>(this, Messages.NewSurveyMessage, (sender, args) => 
-            {
-                SurveysPanel.Children.Add(new Label { Text = args.ToString() } );
-            });
         }
 
         private async void AddSurveys_Clicked(object sender, EventArgs e)
