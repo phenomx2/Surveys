@@ -17,6 +17,10 @@
                         <Label Text="{Binding BirthDate, StringFormat='{}{0:dd/MM/yyyy}'}"/>
                         <Label Text="{Binding FavoriteTeam}"
                                TextColor="{Binding FavoriteTeam, Converter={StaticResource TeamColorConverter}}"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Latitude, StringFormat='{}{0:N4}'}"/>
+                            <Label Text="{Binding Longitude,StringFormat='{}{0:N4}'}"/>
+                        </StackLayout>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

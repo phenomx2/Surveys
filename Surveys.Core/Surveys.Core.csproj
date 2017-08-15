@@ -43,6 +43,7 @@
     <Compile Include="Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Survey.cs" />
+    <Compile Include="Services\IGeolocationService.cs" />
     <Compile Include="ViewModel\SurveyDetailsViewModel.cs" />
     <Compile Include="ViewModel\SurveysViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />

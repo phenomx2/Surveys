@@ -2,8 +2,10 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Surveys.Core.Model;
+using Surveys.Core.Services;
 using Xamarin.Forms;
 
 namespace Surveys.Core.ViewModel
@@ -93,14 +95,34 @@ namespace Surveys.Core.ViewModel
                 (EndSurveyCommand as Command)?.ChangeCanExecute();
         }
 
-        private void EndSurveyCommandExecute()
+        private async void EndSurveyCommandExecute()
         {
             var newSurvey = new Survey
             {
                 Name = Name,
-                FavoriteTeam = FavoriteTeam, 
+                FavoriteTeam = FavoriteTeam,
                 BirthDate = Birthdate
             };
+            var geolocationService = DependencyService.Get<IGeolocationService>();
+            if (geolocationService != null)
+            {
+                try
+                {
+                    var currentLocation = await geolocationService.GetCurrentLocationAsync();
+                    newSurvey.Latitude = currentLocation.Item1;
+                    newSurvey.Longitude = currentLocation.Item2;
+                }
+                catch (Exception exception)
+                {
+                    newSurvey.Latitude = 0;
+                    newSurvey.Longitude = 0;
+                    System.Diagnostics.Debug.WriteLine("-------------------");
+                    System.Diagnostics.Debug.WriteLine("GEOLOCATION_EXCEPTION");
+                    System.Diagnostics.Debug.WriteLine(exception.Message);
+                    System.Diagnostics.Debug.WriteLine("-------------------");
+                    throw;
+                }
+            }
             MessagingCenter.Send(this,Messages.NewSurveyComplete,newSurvey);
         }
 
