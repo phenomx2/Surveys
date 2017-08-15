@@ -47,6 +47,9 @@
     <Compile Include="ViewModel\SurveyDetailsViewModel.cs" />
     <Compile Include="ViewModel\SurveysViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Views\RootNavigation.xaml.cs">
+      <DependentUpon>RootNavigation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SurveyDetail.xaml.cs">
       <DependentUpon>SurveyDetail.xaml</DependentUpon>
     </Compile>
@@ -97,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SurveyDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RootNavigation.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
