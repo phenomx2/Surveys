@@ -1,19 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:Surveys.Core.ViewModel"
              x:Class="Surveys.Core.Views.SurveyDetail"
              Title="Nueva Encuesta">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <viewModels:SurveyDetailsViewModel x:Key="SurveysDetailViewModel"/>
+            
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid Margin="10" BindingContext="{StaticResource SurveysDetailViewModel}">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid Margin="10">
+        
         <StackLayout>
             <Label Text="Nombre"/>
             <Entry Text="{Binding Name}"/>
@@ -32,8 +28,17 @@
                         />
             </Grid>
         </StackLayout>
-        <Button Grid.Row="1"
-                Text="Aceptar"
-                Command="{Binding EndSurveyCommand}"/>
+        
     </Grid>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Ok"
+                     Command="{Binding EndSurveyCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource"
+                            Android="ok.png"
+                            WinPhone="assets/ok.png"
+                            iOS="ok.png"/>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
 </ContentPage>

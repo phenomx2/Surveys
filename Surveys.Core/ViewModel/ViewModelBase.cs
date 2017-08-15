@@ -1,15 +1,24 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using Prism.Mvvm;
+using Prism.Navigation;
 
 namespace Surveys.Core.ViewModel
 {
-    public abstract class ViewModelBase : INotifyPropertyChanged
+    public abstract class ViewModelBase : BindableBase, INavigationAware
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertychanged([CallerMemberName] string propertyName = null)
+        public virtual void OnNavigatedFrom(NavigationParameters parameters)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            
+        }
+
+        public virtual void OnNavigatedTo(NavigationParameters parameters)
+        {
+            
+        }
+
+
+        public void OnNavigatingTo(NavigationParameters parameters)
+        {
+            
         }
     }
 }

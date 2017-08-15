@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:core="clr-namespace:Surveys.Core.ViewModel"
              xmlns:converters="clr-namespace:Surveys.Core.Converters"
              x:Class="Surveys.Core.Views.Surveys"
              Title="Encuestas">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <core:SurveysViewModel x:Key="SurveysViewModel"/>
             <converters:TeamColorConverter x:Key="TeamColorConverter"/>
             <DataTemplate x:Key="SurveyDataTemplate">
                 <ViewCell>
@@ -26,20 +24,28 @@
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid Margin="10" BindingContext="{Binding Source={StaticResource SurveysViewModel}}">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Text="+"
-                Command="{Binding NewSurveyCommand}"/>
+        
         <ListView Grid.Row="1"
                   ItemsSource="{Binding Surveys}"
-                  SelectedItem="{Binding SelectedSurvey}"
+                  SelectedItem="{Binding SelectedSurvey, Mode=TwoWay}"
                   ItemTemplate="{StaticResource SurveyDataTemplate}"
                   HasUnevenRows="True"
                   />
-
-
     </Grid>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nueva"
+                     Command="{Binding NewSurveyCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource"
+                            Android="newcapture.png"
+                            iOS="newcapture.png"
+                            WinPhone="assets/newcapture.png"/>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
 </ContentPage>

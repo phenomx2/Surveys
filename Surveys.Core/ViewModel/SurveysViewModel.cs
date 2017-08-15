@@ -1,12 +1,16 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Prism.Navigation;
 using Surveys.Core.Model;
+using Surveys.Core.Views;
 using Xamarin.Forms;
 
 namespace Surveys.Core.ViewModel
 {
     public class SurveysViewModel : ViewModelBase
     {
+        private INavigationService _navigationServiceService; 
+
         private ObservableCollection<Survey> _surveys;
         private Survey _selectedSurvey;
 
@@ -19,7 +23,7 @@ namespace Surveys.Core.ViewModel
             {
                 if (_surveys == value) return;
                 _surveys = value;
-                OnPropertychanged();
+                OnPropertyChanged();
             }
         }
 
@@ -30,23 +34,29 @@ namespace Surveys.Core.ViewModel
             {
                 if (_selectedSurvey == value) return;
                 _selectedSurvey = value;
-                OnPropertychanged();
+                OnPropertyChanged();
             }
         }
 
-        public SurveysViewModel()
+        public SurveysViewModel(INavigationService navigationService)
         {
+            _navigationServiceService = navigationService;
             NewSurveyCommand = new Command(NewSurveyCommandExecute);
             Surveys = new ObservableCollection<Survey>();
-            MessagingCenter.Subscribe<SurveyDetailsViewModel, Survey>(this, Messages.NewSurveyComplete, (sender, args) => 
-            {
-                Surveys.Add(args);
-            });
         }
 
-        private void NewSurveyCommandExecute()
+        private async void NewSurveyCommandExecute()
         {
-            MessagingCenter.Send(this,Messages.NewSurvey);
+            await _navigationServiceService.NavigateAsync(nameof(SurveyDetail));
+        }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+            if (parameters.ContainsKey("NewSurvey"))
+            {
+                Surveys.Add(parameters["NewSurvey"] as Survey);
+            }
         }
     }
 }
