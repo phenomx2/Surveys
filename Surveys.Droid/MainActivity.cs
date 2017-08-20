@@ -10,6 +10,7 @@ namespace Surveys.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            //ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(bundle);
 
             Xamarin.Forms.Forms.Init(this, bundle);

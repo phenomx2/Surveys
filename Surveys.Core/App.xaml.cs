@@ -23,7 +23,7 @@ namespace Surveys.Core
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync($"{nameof(RootNavigation)}/{nameof(Views.Surveys)}");
+            await NavigationService.NavigateAsync($"{nameof(Login)}");
         }
 
         protected override void RegisterTypes()
@@ -31,6 +31,9 @@ namespace Surveys.Core
             Container.RegisterTypeForNavigation < Views.RootNavigation>();
             Container.RegisterTypeForNavigation<Views.Surveys,SurveysViewModel>();
             Container.RegisterTypeForNavigation<Views.SurveyDetail,SurveyDetailsViewModel>();
+            Container.RegisterTypeForNavigation<Views.Login, LoginViewModel>();
+            Container.RegisterTypeForNavigation<Views.Main,MainViewModel>();
+            Container.RegisterTypeForNavigation<Views.About, AboutViewModel>();
         }
     }
 }

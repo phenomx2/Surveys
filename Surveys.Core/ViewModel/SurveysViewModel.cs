@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Prism.Commands;
 using Prism.Navigation;
 using Surveys.Core.Model;
 using Surveys.Core.Views;
@@ -9,7 +10,7 @@ namespace Surveys.Core.ViewModel
 {
     public class SurveysViewModel : ViewModelBase
     {
-        private INavigationService _navigationServiceService; 
+        private readonly INavigationService _navigationServiceService; 
 
         private ObservableCollection<Survey> _surveys;
         private Survey _selectedSurvey;
@@ -41,7 +42,7 @@ namespace Surveys.Core.ViewModel
         public SurveysViewModel(INavigationService navigationService)
         {
             _navigationServiceService = navigationService;
-            NewSurveyCommand = new Command(NewSurveyCommandExecute);
+            NewSurveyCommand = new DelegateCommand(NewSurveyCommandExecute);
             Surveys = new ObservableCollection<Survey>();
         }
 

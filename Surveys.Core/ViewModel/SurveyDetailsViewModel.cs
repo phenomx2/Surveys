@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using Surveys.Core.Model;
@@ -86,15 +86,10 @@ namespace Surveys.Core.ViewModel
                 "Saprissa"
             };
 
-            SelectTeamCommand = new Command(SelectTeamCommandExecute);
-            EndSurveyCommand = new Command(EndSurveyCommandExecute, EndSurveyCommandCanExecute);
-            PropertyChanged += SurveysDetailViewModel_OnPropertyChanged;
-        }
-
-        private void SurveysDetailViewModel_OnPropertyChanged(object o, PropertyChangedEventArgs e)
-        {
-            if(e.PropertyName == nameof(Name) || e.PropertyName == nameof(FavoriteTeam))
-                (EndSurveyCommand as Command)?.ChangeCanExecute();
+            SelectTeamCommand = new DelegateCommand(SelectTeamCommandExecute);
+            EndSurveyCommand = new DelegateCommand(EndSurveyCommandExecute, EndSurveyCommandCanExecute)
+                .ObservesProperty(() => Name)
+                .ObservesProperty(() => FavoriteTeam);
         }
 
         private async void EndSurveyCommandExecute()
@@ -138,7 +133,5 @@ namespace Surveys.Core.ViewModel
         {
             return !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(FavoriteTeam);
         }
-
-
     }
 }
