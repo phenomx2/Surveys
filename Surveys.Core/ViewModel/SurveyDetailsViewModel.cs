@@ -7,6 +7,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using Surveys.Core.Model;
+using Surveys.Core.ServiceInterfaces;
 using Surveys.Core.Services;
 using Xamarin.Forms;
 using DependencyService = Xamarin.Forms.DependencyService;
@@ -17,6 +18,7 @@ namespace Surveys.Core.ViewModel
     {
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _pageDialogService;
+        private readonly ILocalDbService _localDbService;
         private string _name;
         private DateTime _birthdate;
         private string _favoriteTeam;
@@ -70,10 +72,11 @@ namespace Surveys.Core.ViewModel
 
         public ICommand EndSurveyCommand { get; set; }
 
-        public SurveyDetailsViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+        public SurveyDetailsViewModel(INavigationService navigationService, IPageDialogService pageDialogService, ILocalDbService localDbService)
         {
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
+            _localDbService = localDbService;
             Teams = new ObservableCollection<string>
             {
                 "Alianza Lima",
@@ -96,6 +99,7 @@ namespace Surveys.Core.ViewModel
         {
             var newSurvey = new Survey
             {
+                Id = Guid.NewGuid().ToString(),
                 Name = Name,
                 FavoriteTeam = FavoriteTeam,
                 BirthDate = Birthdate
@@ -120,7 +124,8 @@ namespace Surveys.Core.ViewModel
                     throw;
                 }
             }
-            await _navigationService.GoBackAsync(new NavigationParameters {{"NewSurvey", newSurvey}});
+            await _localDbService.InsertSurveyAsync(newSurvey);
+            await _navigationService.GoBackAsync();
         }
 
         private async void SelectTeamCommandExecute()

@@ -3,14 +3,15 @@ using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Surveys.Core.Model;
+using Surveys.Core.ServiceInterfaces;
 using Surveys.Core.Views;
-using Xamarin.Forms;
 
 namespace Surveys.Core.ViewModel
 {
     public class SurveysViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationServiceService; 
+        private readonly INavigationService _navigationServiceService;
+        private readonly ILocalDbService _localDbService;
 
         private ObservableCollection<Survey> _surveys;
         private Survey _selectedSurvey;
@@ -39,9 +40,10 @@ namespace Surveys.Core.ViewModel
             }
         }
 
-        public SurveysViewModel(INavigationService navigationService)
+        public SurveysViewModel(INavigationService navigationService, ILocalDbService localDbService)
         {
             _navigationServiceService = navigationService;
+            _localDbService = localDbService;
             NewSurveyCommand = new DelegateCommand(NewSurveyCommandExecute);
             Surveys = new ObservableCollection<Survey>();
         }
@@ -51,12 +53,13 @@ namespace Surveys.Core.ViewModel
             await _navigationServiceService.NavigateAsync(nameof(SurveyDetail));
         }
 
-        public override void OnNavigatedTo(NavigationParameters parameters)
+        public override async void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            if (parameters.ContainsKey("NewSurvey"))
+            var allSurveys = await _localDbService.GetAllSurveysAsync();
+            if (Surveys != null)
             {
-                Surveys.Add(parameters["NewSurvey"] as Survey);
+                Surveys = new ObservableCollection<Survey>(allSurveys);
             }
         }
     }

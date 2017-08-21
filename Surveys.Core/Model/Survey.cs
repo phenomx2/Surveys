@@ -4,6 +4,7 @@ namespace Surveys.Core.Model
 {
     public class Survey
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public string FavoriteTeam { get; set; }
