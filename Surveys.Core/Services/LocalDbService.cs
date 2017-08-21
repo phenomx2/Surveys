@@ -40,7 +40,7 @@ namespace Surveys.Core.Services
         {
             return Task.Run(() =>
             {
-                var query = $"DELETE FROM Survey WHERE Id = {survey.Id}";
+                var query = $"DELETE FROM Survey WHERE Id = '{survey.Id}'";
                 var command = _connection.CreateCommand(query);
                 var result = command.ExecuteNonQuery();
                 return result > 0;

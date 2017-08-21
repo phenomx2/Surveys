@@ -36,7 +36,18 @@
                   ItemTemplate="{StaticResource SurveyDataTemplate}"
                   HasUnevenRows="True"
                   />
+        <Grid IsVisible="{Binding IsEmpty}"
+              Grid.Row="1">
+            <StackLayout VerticalOptions="Center">
+                <Label Text="¡No hay encuestas!"
+                       FontSize="Large"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="Pero es buen momento para crear una"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+        </Grid>
     </Grid>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Nueva"
                      Command="{Binding NewSurveyCommand}">
@@ -45,6 +56,15 @@
                             Android="newcapture.png"
                             iOS="newcapture.png"
                             WinPhone="assets/newcapture.png"/>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Borrar"
+                     Command="{Binding DeleteSurveyCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource"
+                            Android="delete.png"
+                            iOS="delete.png"
+                            WinPhone="assets/delete.png"/>
             </ToolbarItem.Icon>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
