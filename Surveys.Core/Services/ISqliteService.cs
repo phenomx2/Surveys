@@ -2,7 +2,7 @@
 
 namespace Surveys.Core.Services
 {
-    public interface ISqliteService
+    public interface ISqliteService //TODO Mover a su namespace correspondiente
     {
         SQLiteConnection GetConnection();
     }

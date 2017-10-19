@@ -43,6 +43,7 @@ namespace Surveys.Core
         {
             base.ConfigureContainer();
             Container.RegisterInstance<ILocalDbService>(new LocalDbService());
+            Container.RegisterInstance<IWebApiService>(new WebApiService());
         }
     }
 }
