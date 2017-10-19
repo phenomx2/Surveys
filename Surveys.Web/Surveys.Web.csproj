@@ -111,6 +111,10 @@
       <Project>{2fd1818d-0f85-4fa1-a4ff-4397e07c7f69}</Project>
       <Name>Surveys.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Surveys.Web.DAL.SqlServer\Surveys.Web.DAL.SqlServer.csproj">
+      <Project>{cf4f62c5-2ca9-497f-944e-3393430b1f83}</Project>
+      <Name>Surveys.Web.DAL.SqlServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
