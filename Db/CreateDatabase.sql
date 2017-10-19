@@ -1,0 +1,15 @@
+CREATE TABLE Teams(
+    Id    INT NOT NULL,
+    Name  NVARCHAR(50) NOT NULL,
+    Color NVARCHAR(50) NOT NULL,
+    Logo  VARBINARY(MAX) NULL,
+    PRIMARY KEY(Id));
+
+CREATE TABLE Surveys(
+    Id NVARCHAR(50) NOT NULL,
+    Name NVARCHAR(50) NOT NULL,
+    Birthdate DATETIME NOT NULL,
+    TeamId INT NOT NULL,
+    Latitude DECIMAL(18,4) NOT NULL,
+    Longitude DECIMAL(18,4) NOT NULL,
+    PRIMARY KEY(Id));

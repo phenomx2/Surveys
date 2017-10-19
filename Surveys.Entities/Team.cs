@@ -1,5 +1,6 @@
 ﻿namespace Surveys.Entities
 {
+    [System.Diagnostics.DebuggerDisplay("{Name}")]
     public class Team
     {
         public int Id { get; set; }
