@@ -7,6 +7,6 @@
         public const string DeleteSurveyTitle = "Borrar";
         public const string DeleteSurveyConfirmation = "¿Está seguro(a)?";
         public const string Cancel = "Cancelar";
-        public const string WebApiServiceAddress = "http://URLDESERVICIO";
+        public const string WebApiServiceAddress = "http://surveysbackend.azurewebsites.net/";
     }
 }
