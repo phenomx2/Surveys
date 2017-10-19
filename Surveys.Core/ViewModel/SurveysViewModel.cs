@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
-using Surveys.Core.Model;
 using Surveys.Core.ServiceInterfaces;
 using Surveys.Core.Views;
+using Surveys.Entities;
 
 namespace Surveys.Core.ViewModel
 {

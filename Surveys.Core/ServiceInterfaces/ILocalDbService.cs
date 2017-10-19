@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Surveys.Core.Model;
+using Surveys.Entities;
 
 namespace Surveys.Core.ServiceInterfaces
 {

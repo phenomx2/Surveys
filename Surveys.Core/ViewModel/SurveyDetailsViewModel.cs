@@ -11,6 +11,7 @@ using Surveys.Core.ServiceInterfaces;
 using Surveys.Core.Services;
 using Xamarin.Forms;
 using DependencyService = Xamarin.Forms.DependencyService;
+using Surveys.Entities;
 
 namespace Surveys.Core.ViewModel
 {
@@ -101,7 +102,7 @@ namespace Surveys.Core.ViewModel
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = Name,
-                FavoriteTeam = FavoriteTeam,
+                //TeamId = FavoriteTeam,
                 BirthDate = Birthdate
             };
             var geolocationService = DependencyService.Get<IGeolocationService>();

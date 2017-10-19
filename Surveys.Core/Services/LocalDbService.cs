@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using SQLite;
 using Surveys.Core.Model;
 using Surveys.Core.ServiceInterfaces;
+using Surveys.Entities;
 using Xamarin.Forms;
 
 namespace Surveys.Core.Services
