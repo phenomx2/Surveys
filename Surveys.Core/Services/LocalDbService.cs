@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
-using Surveys.Core.Model;
 using Surveys.Core.ServiceInterfaces;
 using Surveys.Entities;
 using Xamarin.Forms;
@@ -25,6 +24,10 @@ namespace Surveys.Core.Services
             {
                 _connection.CreateTable<Survey>();
             }
+            if (_connection.TableMappings.All(t => t.TableName != nameof(Team)))
+            {
+                _connection.CreateTable<Team>();
+            }
         }
 
         public Task<IEnumerable<Survey>> GetAllSurveysAsync()
@@ -46,6 +49,26 @@ namespace Surveys.Core.Services
                 var result = command.ExecuteNonQuery();
                 return result > 0;
             });
+        }
+
+        public Task DeleteAllSurveysAsync()
+        {
+            return Task.Run(() => _connection.DeleteAll<Survey>() > 0);
+        }
+
+        public Task DeleteAllTeamsAsync()
+        {
+            return Task.Run(() => _connection.DeleteAll<Team>() > 0);
+        }
+
+        public Task InsertTeamsAsync(IEnumerable<Team> teams)
+        {
+            return Task.Run(() => _connection.InsertAll(teams));
+        }
+
+        public Task<IEnumerable<Team>> GetAllTeamsAsync()
+        {
+            return Task.Run(() => (IEnumerable<Team>) _connection.Table<Team>().ToArray());
         }
     }
 }
