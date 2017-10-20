@@ -51,6 +51,12 @@ namespace Surveys.Core.ViewModel
                     Icon = "about.png", Title = "Acerca de",
                     LoadModuleCommand = new DelegateCommand(async
                         () => await _navigationService.NavigateAsync($"{nameof(RootNavigation)}/{nameof(Views.About)}"))
+                }, 
+                new Module
+                {
+                    Icon = "icon.png", Title = "Sync",
+                    LoadModuleCommand = new DelegateCommand(async 
+                        () => await _navigationService.NavigateAsync($"{nameof(RootNavigation)}/{nameof(Views.Sync)}"))
                 }
             };
             PropertyChanged += MainViewModel_PropertyChanged;

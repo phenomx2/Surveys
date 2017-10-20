@@ -7,6 +7,7 @@ using Prism.Services;
 using Surveys.Core.ServiceInterfaces;
 using Surveys.Core.Views;
 using Surveys.Entities;
+#pragma warning disable 618
 
 namespace Surveys.Core.ViewModel
 {

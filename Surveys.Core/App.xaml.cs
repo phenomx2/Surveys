@@ -37,6 +37,8 @@ namespace Surveys.Core
             Container.RegisterTypeForNavigation<Views.Login, LoginViewModel>();
             Container.RegisterTypeForNavigation<Views.Main,MainViewModel>();
             Container.RegisterTypeForNavigation<Views.About, AboutViewModel>();
+            Container.RegisterTypeForNavigation<Views.Sync, SyncViewModel>();
+            Container.RegisterTypeForNavigation<Views.TeamSelection, TeamSelectionViewModel>();
         }
 
         protected override void ConfigureContainer()

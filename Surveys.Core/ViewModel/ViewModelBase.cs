@@ -16,7 +16,7 @@ namespace Surveys.Core.ViewModel
         }
 
 
-        public void OnNavigatingTo(NavigationParameters parameters)
+        public virtual void OnNavigatingTo(NavigationParameters parameters)
         {
             
         }
