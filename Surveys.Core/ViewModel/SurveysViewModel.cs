@@ -16,15 +16,15 @@ namespace Surveys.Core.ViewModel
         private readonly INavigationService _navigationServiceService;
         private readonly IPageDialogService _pageDialogService;
         private readonly ILocalDbService _localDbService;
-        private ObservableCollection<Survey> _surveys;
-        private Survey _selectedSurvey;
+        private ObservableCollection<SurveyViewModel> _surveys;
+        private SurveyViewModel _selectedSurvey;
 
         public bool IsEmpty => Surveys == null || !Surveys.Any();
 
         public ICommand NewSurveyCommand { get; set; }
         public ICommand DeleteSurveyCommand { get; set; }
 
-        public ObservableCollection<Survey> Surveys
+        public ObservableCollection<SurveyViewModel> Surveys
         {
             get => _surveys;
             set
@@ -35,7 +35,7 @@ namespace Surveys.Core.ViewModel
             }
         }
 
-        public Survey SelectedSurvey
+        public SurveyViewModel SelectedSurvey
         {
             get => _selectedSurvey;
             set
@@ -52,7 +52,7 @@ namespace Surveys.Core.ViewModel
             _localDbService = localDbService;
             _pageDialogService = pageDialogService;
             NewSurveyCommand = new DelegateCommand(NewSurveyCommandExecute);
-            Surveys = new ObservableCollection<Survey>();
+            Surveys = new ObservableCollection<SurveyViewModel>();
             DeleteSurveyCommand = new DelegateCommand(DeleteSurveyCommandExecute,DeleteSurveyCommandCanExecute)
                 .ObservesProperty(() => SelectedSurvey);
         }
@@ -68,7 +68,7 @@ namespace Surveys.Core.ViewModel
                 Literals.DeleteSurveyConfirmation, Literals.Ok, Literals.Cancel);
             if (result)
             {
-                await _localDbService.DeleteSurveyAsync(SelectedSurvey);
+                await _localDbService.DeleteSurveyAsync(SurveyViewModel.ToEntitySurvey(SelectedSurvey));
                 await LoadSurveys();
             }
         }
@@ -86,9 +86,12 @@ namespace Surveys.Core.ViewModel
 
         private async System.Threading.Tasks.Task LoadSurveys()
         {
+            var allTeams = await _localDbService.GetAllTeamsAsync();
             var allSurveys = await _localDbService.GetAllSurveysAsync();
-            if (Surveys != null)
-                Surveys = new ObservableCollection<Survey>(allSurveys);
+
+            if (allSurveys != null)
+                Surveys = new ObservableCollection<SurveyViewModel>(
+                    allSurveys.Select(s => SurveyViewModel.FromEntitySurvey(s, allTeams)));
 
             OnPropertyChanged(nameof(IsEmpty));
         }

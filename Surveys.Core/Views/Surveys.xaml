@@ -1,25 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:Surveys.Core.Converters"
              x:Class="Surveys.Core.Views.Surveys"
              Title="Encuestas">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:TeamColorConverter x:Key="TeamColorConverter"/>
             <DataTemplate x:Key="SurveyDataTemplate">
                 <ViewCell>
-                    <StackLayout>
-                        <Label Text="{Binding Name}"
-                               FontSize="24"/>
-                        <Label Text="{Binding BirthDate, StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                        <Label Text="{Binding FavoriteTeam}"
-                               TextColor="{Binding FavoriteTeam, Converter={StaticResource TeamColorConverter}}"/>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Latitude, StringFormat='{}{0:N4}'}"/>
-                            <Label Text="{Binding Longitude,StringFormat='{}{0:N4}'}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Team.Logo}"
+                               WidthRequest="100"
+                               HeightRequest="100"
+                               HorizontalOptions="Start"
+                               Margin="4"/>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="{Binding Name}"
+                                   FontSize="24"/>
+                            <Label Text="{Binding BirthDate, StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                            <Label Text="{Binding Team.Name}"
+                                   TextColor="{Binding Team.Color}"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Latitude, StringFormat='{}{0:N4}'}"/>
+                                <Label Text="{Binding Longitude,StringFormat='{}{0:N4}'}"/>
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ResourceDictionary>

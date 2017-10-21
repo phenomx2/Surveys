@@ -55,6 +55,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SurveyDetailsViewModel.cs" />
     <Compile Include="ViewModel\SurveysViewModel.cs" />
+    <Compile Include="ViewModel\SurveyViewModel.cs" />
     <Compile Include="ViewModel\SyncViewModel.cs" />
     <Compile Include="ViewModel\TeamSelectionViewModel.cs" />
     <Compile Include="ViewModel\TeamViewModel.cs" />
