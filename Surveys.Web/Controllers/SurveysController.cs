@@ -6,6 +6,7 @@ using Surveys.Web.DAL.SqlServer;
 
 namespace Surveys.Web.Controllers
 {
+    [Authorize]
     public class SurveysController : ApiController
     {
         private readonly SurveysProvider _surveysProvider = new SurveysProvider();

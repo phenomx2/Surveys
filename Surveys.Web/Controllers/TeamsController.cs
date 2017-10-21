@@ -6,6 +6,7 @@ using Surveys.Web.DAL.SqlServer;
 
 namespace Surveys.Web.Controllers
 {
+    [Authorize]
     public class TeamsController : ApiController
     {
         private readonly TeamsProvider _teamsProvider = new TeamsProvider();
