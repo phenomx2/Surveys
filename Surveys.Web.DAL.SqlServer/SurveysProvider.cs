@@ -51,8 +51,8 @@ namespace Surveys.Web.DAL.SqlServer
         {
             return new Survey
             {
-                Id = (string) reader[nameof(Survey.Id)],
-                Name = (string) reader[nameof(Survey.Name)],
+                Id = (string) reader[nameof(Survey.Id)].ToString(),
+                Name = (string) reader[nameof(Survey.Name)].ToString(),
                 TeamId = (int) reader[nameof(Survey.TeamId)],
                 BirthDate = (DateTime) reader[nameof(Survey.BirthDate)],
                 Latitude = (double) reader[nameof(Survey.Latitude)],
