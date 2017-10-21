@@ -42,6 +42,7 @@
     <Compile Include="Literals.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="Model\Module.cs" />
+    <Compile Include="Model\TokenModelResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Survey.cs" />
     <Compile Include="ServiceInterfaces\ILocalDbService.cs" />

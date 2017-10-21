@@ -54,7 +54,7 @@ namespace Surveys.Core.ViewModel
                 }, 
                 new Module
                 {
-                    Icon = "icon.png", Title = "Sync",
+                    Icon = "sync.png", Title = "Sync",
                     LoadModuleCommand = new DelegateCommand(async 
                         () => await _navigationService.NavigateAsync($"{nameof(RootNavigation)}/{nameof(Views.Sync)}"))
                 }
