@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using Surveys.Core.ServiceInterfaces;
 using Surveys.Core.Views;
-using Surveys = Surveys.Core.Views.Surveys;
-
 #pragma warning disable 618
 
 namespace Surveys.Core.ViewModel
@@ -90,7 +87,6 @@ namespace Surveys.Core.ViewModel
                 await _pageDialogService.DisplayAlertAsync(Literals.LoginTitle, exception.Message, Literals.Ok);
             }
             IsBusy = false;
-            
         }
     }
 }

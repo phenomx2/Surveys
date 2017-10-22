@@ -1,5 +1,4 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
 using Xamarin.Forms.Platform.Android;
 
@@ -14,9 +13,7 @@ namespace Surveys.Droid
             base.OnCreate(bundle);
 
             Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new Surveys.Core.App());
-            // Set our view from the "main" layout resource
-            // SetContentView (Resource.Layout.Main);
+            LoadApplication(new Core.App());
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Surveys.Core.ViewModel
 
         public int Id
         {
-            get { return _id; }
+            get => _id;
             set
             {
                 if (_id == value) return;
@@ -26,7 +26,7 @@ namespace Surveys.Core.ViewModel
 
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 if (_name == value) return;
@@ -37,7 +37,7 @@ namespace Surveys.Core.ViewModel
 
         public string Color
         {
-            get { return _color; }
+            get => _color;
             set
             {
                 if (_color == value) return;
@@ -48,7 +48,7 @@ namespace Surveys.Core.ViewModel
 
         public ImageSource Logo
         {
-            get { return _logo; }
+            get => _logo;
             set
             {
                 if(_logo == value) return;

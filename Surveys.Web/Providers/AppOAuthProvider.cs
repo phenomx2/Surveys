@@ -13,10 +13,7 @@ namespace Surveys.Web.Providers
 
         public AppOAuthProvider(string publicClientId)
         {
-            if (publicClientId == null)
-                throw new ArgumentNullException(nameof(publicClientId), "El identificador no es válido");
-
-            _publicClientId = publicClientId;
+            _publicClientId = publicClientId ?? throw new ArgumentNullException(nameof(publicClientId), "El identificador no es válido");
         }
 
         public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)

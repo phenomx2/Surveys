@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using Surveys.Core.Model;
 using Surveys.Core.Views;
+#pragma warning disable 618
 
 namespace Surveys.Core.ViewModel
 {

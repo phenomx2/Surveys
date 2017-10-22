@@ -1,28 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Unity;
 using Prism.Unity;
 using Surveys.Core.ServiceInterfaces;
 using Surveys.Core.Services;
 using Surveys.Core.ViewModel;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Surveys.Core.Views;
 
 namespace Surveys.Core
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    // ReSharper disable once RedundantExtendsListEntry
     public partial class App : PrismApplication
     {
-        public App()
-        {
-            
-            //MainPage = new NavigationPage(new Views.Surveys());
-        }
-
         protected override async void OnInitialized()
         {
             InitializeComponent();
@@ -31,14 +20,14 @@ namespace Surveys.Core
 
         protected override void RegisterTypes()
         {
-            Container.RegisterTypeForNavigation < Views.RootNavigation>();
+            Container.RegisterTypeForNavigation < RootNavigation>();
             Container.RegisterTypeForNavigation<Views.Surveys,SurveysViewModel>();
-            Container.RegisterTypeForNavigation<Views.SurveyDetail,SurveyDetailsViewModel>();
-            Container.RegisterTypeForNavigation<Views.Login, LoginViewModel>();
-            Container.RegisterTypeForNavigation<Views.Main,MainViewModel>();
-            Container.RegisterTypeForNavigation<Views.About, AboutViewModel>();
-            Container.RegisterTypeForNavigation<Views.Sync, SyncViewModel>();
-            Container.RegisterTypeForNavigation<Views.TeamSelection, TeamSelectionViewModel>();
+            Container.RegisterTypeForNavigation<SurveyDetail,SurveyDetailsViewModel>();
+            Container.RegisterTypeForNavigation<Login, LoginViewModel>();
+            Container.RegisterTypeForNavigation<Main,MainViewModel>();
+            Container.RegisterTypeForNavigation<About, AboutViewModel>();
+            Container.RegisterTypeForNavigation<Sync, SyncViewModel>();
+            Container.RegisterTypeForNavigation<TeamSelection, TeamSelectionViewModel>();
         }
 
         protected override void ConfigureContainer()

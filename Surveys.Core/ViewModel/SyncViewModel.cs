@@ -60,33 +60,25 @@ namespace Surveys.Core.ViewModel
 
         private async void SyncCommandExecute()
         {
-            try
+            IsBusy = true;
+            /*Enviar encuestas*/
+            var allSurveys = await _dbService.GetAllSurveysAsync();
+            if (allSurveys != null && allSurveys.Any())
             {
-                IsBusy = true;
-                /*Enviar encuestas*/
-                var allSurveys = await _dbService.GetAllSurveysAsync();
-                if (allSurveys != null && allSurveys.Any())
-                {
-                    await _webApiService.SaveSurveysAsync(allSurveys);
-                    await _dbService.DeleteAllSurveysAsync();
-                }
-                /*Consultar equipos*/
-                var allTeams = await _webApiService.GetTeamsAsync();
-                if (allTeams != null && allTeams.Any())
-                {
-                    await _dbService.DeleteAllTeamsAsync();
-                    await _dbService.InsertTeamsAsync(allTeams);
-                }
-                Application.Current.Properties["lastSync"] = DateTime.Now;
-                await Application.Current.SavePropertiesAsync();
-                Status = $"Se enviaron {allSurveys.Count()} encuestas y se obtuvieron {allTeams.Count()} equipos";
-                IsBusy = false;
+                await _webApiService.SaveSurveysAsync(allSurveys);
+                await _dbService.DeleteAllSurveysAsync();
             }
-            catch (Exception exception)
+            /*Consultar equipos*/
+            var allTeams = await _webApiService.GetTeamsAsync();
+            if (allTeams != null && allTeams.Any())
             {
-                System.Diagnostics.Debugger.Break();
-                throw;
+                await _dbService.DeleteAllTeamsAsync();
+                await _dbService.InsertTeamsAsync(allTeams);
             }
+            Application.Current.Properties["lastSync"] = DateTime.Now;
+            await Application.Current.SavePropertiesAsync();
+            Status = $"Se enviaron {allSurveys.Count()} encuestas y se obtuvieron {allTeams.Count()} equipos";
+            IsBusy = false;
         }
     }
 }
